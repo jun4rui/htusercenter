@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9cc6c111-7a49-41a3-9074-6d1b241860f4" name="htyou" url="http://www.htyou.com/page/usercenter/">
+        <fileTransfer host="www.htyou.com" port="2222" rootFolder="/huatian/apache-tomcat-6.0.18-hebing/webapps/htonline-webroot/WEB-INF/usercenter" accessType="SFTP" password="dfccdfdedfdadfdfdfd9dfcfdfd8df9bdf98df99" username="userftp">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

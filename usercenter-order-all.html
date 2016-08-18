@@ -1,0 +1,48 @@
+<style>
+	#order-panel table {
+		width:100%;
+		border-collapse:collapse;
+	}
+	#order-panel table,
+	#order-panel th,
+	#order-panel td {
+		border:1px solid #D8D8D8;
+	}
+	#order-panel table tr th {
+		font-weight:bold;
+		text-align: center;
+		padding:.5em;
+		background-color: #f0f9ff;
+	}
+	#order-panel table tr td {
+		color:#555;
+		padding:.5em;
+	}
+	#order-panel table tr:hover td {
+		background-color: #EEFFD6;
+	}
+</style>
+<div id="order-panel" ms-controller="main" class="info-panel">
+	<div class="info-title">
+		用户订单信息
+	</div>
+	<div class="info-content">
+		<table>
+			<tr>
+				<th>订单号</th>
+				<th>下单用户账号</th>
+				<th>线路名称</th>
+				<th>下单时间</th>
+				<th>出发时间</th>
+			</tr>
+			<tr ms-repeat-unit="userorder">
+				<td>{{unit.sys_show_order_id}}</td>
+				<td>{{unit.order_user_account}}</td>
+				<td>{{unit.tourproname}}</td>
+				<td>{{unit.order_date}}</td>
+				<td>{{unit.start_date}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+

@@ -1,0 +1,318 @@
+<!--<div id="user-info-panel" ms-controller="main" class="info-panel">
+	&lt;!&ndash;新版&ndash;&gt;
+	&lt;!&ndash;个人信息&ndash;&gt;
+	<table class="user-info-section">
+		<tr>
+			<td>
+				&lt;!&ndash;头像&ndash;&gt;
+			</td>
+			<td>
+				&lt;!&ndash;资料&ndash;&gt;
+			</td>
+			<td>
+				&lt;!&ndash;客服经理&ndash;&gt;
+			</td>
+		</tr>
+	</table>
+	&lt;!&ndash;用户积分信息&ndash;&gt;
+	<div class="user-score">
+
+	</div>
+	&lt;!&ndash;/用户积分信息&ndash;&gt;
+	&lt;!&ndash;/个人信息&ndash;&gt;
+	&lt;!&ndash;/新版&ndash;&gt;
+	<div class="info-title">
+		个人信息
+	</div>
+	<div class="info-content">
+		<table>
+			<tr>
+				<td colspan="2">
+					<img src="http://www.htyou.com/weixin_h5/images/nonface.jpg" ms-if="userinfo.profession==''" alt="" class="face">
+					<img ms-attr-src="{{userinfo.profession}}" ms-if="userinfo.profession!=''" alt="" class="face">
+				</td>
+			</tr>
+			<tr>
+				<td>会员名称:</td>
+				<td>{{userinfo.guestName}}</td>
+			</tr>
+			<tr>
+				<td>会员等级:</td>
+				<td>{{userinfo.vip_class}}</td>
+			</tr>
+			<tr>
+				<td>姓名:</td>
+				<td>{{userinfo.mobilePhone}}</td>
+			</tr>
+			<tr>
+				<td>性别:</td>
+				<td>{{userinfo.guestSex}}</td>
+			</tr>
+			<tr>
+				<td>手机号码:</td>
+				<td>{{userinfo.mobilePhone}}</td>
+			</tr>
+			<tr>
+				<td>身份证号码:</td>
+				<td>{{userinfo.identifyId}}</td>
+			</tr>
+			<tr>
+				<td>电子邮箱:</td>
+				<td>{{userinfo.email}}</td>
+			</tr>
+			<tr>
+				<td>会员积分:</td>
+				<td>{{userinfo.tot_score}}</td>
+			</tr>
+			<tr>
+				<td>会员卡号:</td>
+				<td>{{userinfo.ic_num}}</td>
+			</tr>
+			<tr>
+				<td>客户经理:</td>
+				<td>
+					<img ms-attr-src="http://www.htyou.com/{{info.cimage}}" alt="" class="face">
+					{{userinfo.cuser}} - {{userinfo.cphone}}
+				</td>
+			</tr>
+&lt;!&ndash;			<tr>
+				<td colspan="2">
+					<button>提交</button>
+				</td>
+			</tr>&ndash;&gt;
+		</table>
+	</div>
+</div>-->
+
+<script>
+	$(document).ready(function () {
+		$('#user-info-panel button').click(function () {
+			alert($('#user-info-panel #guestName').text());
+		});
+	});
+</script>
+
+
+<style>
+	#user-info-panel {
+		height:196px;
+	}
+
+	.info-content li {
+		list-style-type: square;
+	}
+	.info-content a {
+		color:#0083DB;
+	}
+	#user-info-panel .face-section {
+		padding: 5px;
+		border: 1px solid #cdcdcd;
+		display: inline-block;
+		position: absolute;
+		left: 18px;
+		top: 18px;
+	}
+
+	#user-info-panel .face-section img {
+		width: 102px;
+		height: 102px;
+		border: 1px solid #e5e5e5;
+	}
+
+	#user-info-panel .info-section {
+		left: 150px;
+		top: 18px;
+		position: absolute;
+		font-size: 14px;
+		line-height: 23px;
+		color: #4c4c4c;
+	}
+	#user-info-panel .info-section a {
+		color:#969696;
+	}
+
+	.seller-section {
+		position: absolute;
+		right: 60px;
+		top: 20px;
+		width: 260px;
+		font-size: 14px;
+		line-height: 23px;
+		color: #4c4c4c;
+		line-height: 20px;
+		padding-left: 80px;
+		padding-top: 15px;
+	}
+	.seller-section>img {
+		width: 68px;
+		height: 68px;
+		border-radius: 50%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.point-section {
+		position:absolute;
+		bottom:0;
+		left:0;
+		width:895px;
+		height:30px;
+		margin:18px;
+		background-color: #edf8fe;
+		line-height:30px;
+		text-indent:1em;
+		font-size: 14px;
+	}
+</style>
+<!--用户信息面板-->
+<div id="user-info-panel" class="info-panel">
+	<!--头像区-->
+	<div class="face-section">
+		<!--<img src="http://www.htyou.com/weixin_h5/images/nonface.jpg" ms-if="userinfo.profession==''" alt="">
+		<img ms-attr-src="{{userinfo.profession}}" ms-if="userinfo.profession!=''" alt="">-->
+		<img ms-attr-src="{{userinfo.profession||'http://www.htyou.com/weixin_h5/images/nonface.jpg'}}" alt="">
+	</div>
+	<!--/头像区-->
+	<!--文字信息区域-->
+	<div class="info-section">
+		账号：{{userinfo.mobilePhone}} <br>
+		昵称：{{userinfo.guestName}} <br>
+		性别：{{userinfo.guestSex}} <br>
+		等级：{{userinfo.tot_score}}-{{userinfo.vip_class}} <br>
+		<a href="#">如何快速提升等级与积分？</a>
+	</div>
+	<!--/文字信息区域-->
+	<!--客户经理区域-->
+	<div class="seller-section">
+		<img ms-attr-src="http://www.htyou.com/{{userinfo.cimage||'weixin_h5/images/default_face.png'}}" alt="">
+		客户经理：{{userinfo.cuser||'华天国旅'}} <br>
+		联系电话：{{userinfo.cphone||'0731-5555 5555'}}
+	</div>
+	<!--/客户经理区域-->
+	<!--积分区域-->
+	<div class="point-section ht-color-normal">
+		<span class="ht-color-heavy ht-font-bold">我的积分：</span>您现在的积分为 <span class="ht-font-highlight">{{userinfo.tot_score}}</span> 点，您可以点击 <a href="#" target="_blank">兑换好礼</a> 兑换喜欢的礼品。
+	</div>
+	<!--/积分区域-->
+</div>
+<!--/用户信息面板-->
+
+<!--APP广告面板-->
+<style scoped>
+	#app-panel .float-hot-area {
+		position:absolute;
+		width:140px;
+		height:45px;
+
+		/*background:#F00;*/
+	}
+
+	#android-app {
+		top: 62px;
+		left: 483px;
+	}
+	#iphone-app {
+		top: 116px;
+		left: 483px;
+	}
+</style>
+<div id="app-panel" class="info-panel">
+	<a href="/page/single/dload_mobile.htm" target="_blank">
+		<img src="/static/2016/usercenter_app.png" alt="">
+	</a>
+	<a href="http://android.myapp.com/myapp/detail.htm?apkName=io.cordova.htyoumobile" target="_blank">
+		<div id="android-app" class="float-hot-area"></div>
+	</a>
+	<a href="https://appsto.re/cn/eznK-.i" target="_blank">
+		<div id="iphone-app"  class="float-hot-area"></div>
+	</a>
+</div>
+<!--/APP广告面板-->
+
+<!--会员特色服务面板-->
+<style>
+	#user-server-panel li {
+		list-style: none;
+		width: 31.3%;
+		float: left;
+		padding: 1% 0 1% 3%;
+		background: url(/static/2016/usercenter_split.png) no-repeat 0 center;
+	}
+	#user-server-panel li:first-child {
+		padding-left: 0;
+		background: none;
+	}
+	#user-server-panel .li-title {
+		margin-bottom: 10px;
+		font-size: 16px;
+	}
+</style>
+<div id="user-server-panel" class="info-panel">
+	<div class="info-title">会员特色服务</div>
+	<div class="info-content">
+		<ul>
+			<li>
+				<div class="li-title ht-color-link">订海外旅游度假，享24小时中文热线</div>
+				<div class="li-content ht-color-light">
+					目前已开通下位机，普吉岛中文热线；为预定旅游度假并出行的会员提供刚咨询和紧急帮助服务。
+				</div>
+			</li>
+			<li>
+				<div class="li-title ht-color-link">积分累加快</div>
+				<div class="li-content ht-color-light">
+					目前已开通下位机，普吉岛中文热线；为预定旅游度假并出行的会员提供刚咨询和紧急帮助服务。
+				</div>
+			</li>
+			<li>
+				<div class="li-title ht-color-link">积分兑换丰富礼品</div>
+				<div class="li-content ht-color-light">
+					目前已开通下位机，普吉岛中文热线；为预定旅游度假并出行的会员提供刚咨询和紧急帮助服务。
+				</div>
+			</li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--/会员特色服务面板-->
+
+<!--功能模块面板区域-->
+<style>
+	.module-panel {
+		width: 300px;
+		float: left;
+		margin-right: 17px;
+	}
+
+	.module-panel:nth-last-child(2) {
+		margin-right: 0px;
+	}
+</style>
+<div class="module-panel">
+	<div id="ticket-tools" class="info-panel">
+		<div class="info-title">机票工具箱</div>
+		<div class="info-content">
+			<li><a href="#">低价订阅提醒</a></li>
+			<li><a href="#">航班实时起降信息</a></li>
+		</div>
+	</div>
+</div>
+<div class="module-panel">
+	<div id="user-interactive" class="info-panel">
+		<div class="info-title">会员互动</div>
+		<div class="info-content">
+			<li><a href="#">华天旅游贵宾俱乐部</a></li>
+			<li><a href="#">积分奖励活动专区</a></li>
+		</div>
+	</div>
+</div>
+<div class="module-panel">
+	<div id="rule-list" class="info-panel">
+		<div class="info-title">会员规则</div>
+		<div class="info-content">
+			<li><a href="#">会员升级标准</a></li>
+			<li><a href="#">华天旅游积分怎么玩</a></li>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+<!--/功能模块面板区域-->
