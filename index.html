@@ -120,6 +120,7 @@
 		//载入订单数据
 		console.log('Order:','http://www.htyou.com/user/htuser_getTourOrderDetail.action?userid='+mainVM.userid);
 		$.getJSON('http://www.htyou.com/user/htuser_getTourOrderDetail.action?userid=' + mainVM.userid, function (result) {
+		/*$.getJSON('http://www.htyou.com/user/htuser_getTourOrderDetail.action?userid=' + '233111', function (result) {*/
 			mainVM.userorder = result;
 			//遍历获取订单中所有的类型
 			var _tempPayType = [];
