@@ -29,6 +29,16 @@
 		}
 	</style>
 	<script>
+		//支付类型keycode转文字
+		var keycode2name = {
+			'160401':'已付费',
+			'160402':'未付费',
+			'160403':'已部分支付',
+			'160404':'托收',
+			'160405':'支付宝支付失败',
+			'160406':'支付宝未支付',
+			'160407':'已积分'
+		};
 		var mainVM = avalon.define({
 			$id:       'main',
 			link:      'usercenter-user-info.htm',
@@ -37,6 +47,10 @@
 			userinfo:  {},
 			//用户账单信息
 			userorder:[],
+			//账单支付类型过滤key
+			orderPayTypeFilter:'',
+			//支付类型列表
+			paytypeList:[],
 			//用户中心菜单数据
 			list:      [
 				{
@@ -78,6 +92,12 @@
 
 				console.log(mainVM.link);
 				console.log(mainVM.list);
+			},
+			paytypeClick: function(){
+				$('#order-panel .info-content ul li.active').removeClass('active');
+				$(this).addClass('active');
+				mainVM.orderPayTypeFilter = $(this).attr('code');
+				console.log($(this).attr('code'));
 			}
 		});
 
@@ -98,8 +118,21 @@
 		});
 
 		//载入订单数据
+		console.log('Order:','http://www.htyou.com/user/htuser_getTourOrderDetail.action?userid='+mainVM.userid);
 		$.getJSON('http://www.htyou.com/user/htuser_getTourOrderDetail.action?userid=' + mainVM.userid, function (result) {
 			mainVM.userorder = result;
+			//遍历获取订单中所有的类型
+			var _tempPayType = [];
+			//获取所有类型对应的名称，并push到数组paytypeList
+			$.each(result, function(index,el){
+				if ($.inArray(el.is_paystr, _tempPayType)===-1){
+					_tempPayType.push(el.is_paystr);
+				}
+			});
+			//根据支付状态类型code获取对应的文字，然后push到paytypeList去
+			for (var i=0; i<_tempPayType.length; i++){
+				mainVM.paytypeList.push( {code:_tempPayType[i],name:keycode2name[_tempPayType[i]]||'未知'} );
+			}
 		});
 	</script>
 </head>

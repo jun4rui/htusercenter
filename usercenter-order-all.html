@@ -21,23 +21,44 @@
 	#order-panel table tr:hover td {
 		background-color: #EEFFD6;
 	}
+
+	#order-panel li {
+		float: left;
+		padding: 0 1em;
+		cursor: pointer;
+		border: 1px solid #dcdcdc;
+		border-bottom: 1px solid #e8e8e8;
+		margin-right: 2px;
+		line-height: 30px;
+		background-color: #f7f6f2;
+	}
+	#order-panel li.active {
+		border-bottom: 1px solid #FFF;
+		line-height: 31px;
+		margin-bottom: -1px;
+		background-color: #f0f9ff;
+	}
 </style>
 <div id="order-panel" ms-controller="main" class="info-panel">
 	<div class="info-title">
 		用户订单信息
 	</div>
 	<div class="info-content">
+		<ul>
+			<li class="active" code="" ms-click="paytypeClick()">全部</li>
+			<li ms-repeat-strlist="paytypeList" ms-attr-code="{{strlist.code}}" ms-click="paytypeClick()">{{strlist.name}}</li>
+		</ul>
 		<table>
 			<tr>
 				<th>订单号</th>
-				<th>下单用户账号</th>
+				<!--<th>下单用户账号</th>-->
 				<th>线路名称</th>
 				<th>下单时间</th>
 				<th>出发时间</th>
 			</tr>
-			<tr ms-repeat-unit="userorder">
+			<tr ms-repeat-unit="userorder" ms-if-loop="unit.is_paystr.indexOf(orderPayTypeFilter)>-1">
 				<td>{{unit.sys_show_order_id}}</td>
-				<td>{{unit.order_user_account}}</td>
+				<!--<td>{{unit.order_user_account}}</td>-->
 				<td>{{unit.tourproname}}</td>
 				<td>{{unit.order_date}}</td>
 				<td>{{unit.start_date}}</td>
